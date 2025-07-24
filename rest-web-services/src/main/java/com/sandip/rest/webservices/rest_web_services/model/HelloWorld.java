@@ -1,4 +1,4 @@
-package com.sandip.rest.webservices.rest_web_services.helloWorldModel;
+package com.sandip.rest.webservices.rest_web_services.model;
 
 public class HelloWorld {
     private String message;
