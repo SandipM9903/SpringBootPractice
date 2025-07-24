@@ -1,10 +1,17 @@
 package com.sandip.rest.webservices.rest_web_services.model;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class User {
     private int id;
+
+    @Size(min = 2)
     private String name;
+
+    @Past
     private LocalDate birthDate;
 
     public User(int id, String name, LocalDate birthDate) {

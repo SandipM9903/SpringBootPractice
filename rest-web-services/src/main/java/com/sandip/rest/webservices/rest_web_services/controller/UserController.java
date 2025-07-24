@@ -3,6 +3,7 @@ package com.sandip.rest.webservices.rest_web_services.controller;
 import com.sandip.rest.webservices.rest_web_services.Exceptions.UserNotFoundException;
 import com.sandip.rest.webservices.rest_web_services.dao.UserDaoService;
 import com.sandip.rest.webservices.rest_web_services.model.User;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -37,12 +38,17 @@ public class UserController {
 
     //Save User
     @PostMapping("users")
-    public ResponseEntity<User> saveUser(@RequestBody User user){
+    public ResponseEntity<User> saveUser(@Valid @RequestBody User user){
         User savedUser = userDaoService.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(savedUser.getId())
                 .toUri();
         return ResponseEntity.created(location).build();
+    }
+
+    @DeleteMapping("/users/{id}")
+    public void deleteUserById(@PathVariable int id){
+        userDaoService.deleteUser(id);
     }
 }
