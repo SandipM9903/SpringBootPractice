@@ -8,10 +8,10 @@ import java.time.LocalDate;
 public class User {
     private int id;
 
-    @Size(min = 2)
+    @Size(min = 2, message = "Name should be at least 2 characters!!!!")
     private String name;
 
-    @Past
+    @Past(message = "Birth Date cannot be at past!!!!")
     private LocalDate birthDate;
 
     public User(int id, String name, LocalDate birthDate) {
